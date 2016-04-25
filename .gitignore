@@ -1,0 +1,11 @@
+.DS_Store
+.nyc_output
+
+*node_modules
+*npm-debug*
+
+report
+log
+coverage
+
+config.local.*
