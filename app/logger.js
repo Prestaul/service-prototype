@@ -1,8 +1,7 @@
 import bunyan from "bunyan";
 
-export default function( name ) {
-	return bunyan.createLogger( {
-		name,
-		serializers: bunyan.stdSerializers
-	} );
-}
+export default ( name, config ) => bunyan.createLogger( {
+	name,
+	serializers: bunyan.stdSerializers,
+	level: config && config.level || "info"
+} );

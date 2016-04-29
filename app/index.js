@@ -6,7 +6,7 @@ import resourcesFactory from "./resources";
 import serverFactory from "./server";
 
 export default function( config ) {
-	var log = loggerFactory( config.appName );
+	var log = loggerFactory( config.appName, config.logger );
 
 	// The application object hosts all common objects and utilities
 	var app = makeEmitter( {
