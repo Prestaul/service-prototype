@@ -2,7 +2,7 @@ import makeEmitter from "listen-up";
 import appStatusFactory from "./app-status";
 import loggerFactory from "./logger";
 import middlewareFactory from "./middleware";
-import resourcesFactory from "./resources";
+import routesFactory from "./routes";
 import serverFactory from "./server";
 
 export default function( config ) {
@@ -26,10 +26,10 @@ export default function( config ) {
 	app.middleware = middlewareFactory( app );
 
 	// Set up application routing
-	var resources = resourcesFactory( app );
+	var routes = routesFactory( app );
 
 	// Set up our express server
-	app.server = serverFactory( app, config.host, resources );
+	app.server = serverFactory( app, config.host, routes );
 	app.status = appStatusFactory( app );
 
 	return app;
