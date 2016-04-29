@@ -6,9 +6,11 @@
   "scripts": {
     "start": "node ./",
     "dev": "NODE_ENV=development nodemon ./ | bunyan",
-    "test": "npm run lint && mocha --compilers js:babel-register -R spec -r ./test-setup app/**/*.test.js",
+    "lint": "eslint --ignore-path .gitignore ./",
+    "test-and-exit": "mocha --compilers js:babel-register -R spec -r ./test-setup app/**/*.test.js",
     "test-watch": "mocha -w --compilers js:babel-register -R spec -r ./test-setup app/**/*.test.js",
-    "lint": "eslint ./"
+    "coverage": "nyc -r text-summary -r html --require=babel-register -- npm run test-and-exit",
+    "test": "npm run lint && npm run coverage"
   },
   "author": "Matt Dunlap <matt.dunlap@leankit.com>",
   "license": "ISC",
@@ -35,6 +37,14 @@
     "eslint-plugin-babel": "^3.2.0",
     "mocha": "^2.4.5",
     "nodemon": "^1.9.1",
+    "nyc": "^6.4.0",
     "sinon": "^1.17.3"
+  },
+  "nyc": {
+    "exclude": [
+      "**/*.test.js",
+      "coverage"
+    ],
+    "all": true
   }
 }
