@@ -1,16 +1,22 @@
 /* eslint-env mocha */
-import { assert } from "chai";
+/* global testHelpers */
 import HTTPStatus from "http-status";
-import hippie from "hippie";
-import sinon from "sinon";
-import configFactory from "../../../config";
-import appFactory from "../../../app";
+
+var {
+	assert,
+	hippie,
+	sinon,
+	configFactory,
+	appFactory
+} = testHelpers;
+
 
 const MOCK_PACKAGE = {
 	name: "test-app-name",
 	version: "6.6.6"
 };
 const config = configFactory( MOCK_PACKAGE );
+
 
 describe( "Integration - Status Resource", () => {
 	var now = Date.now();
@@ -39,8 +45,8 @@ describe( "Integration - Status Resource", () => {
 				.then();
 
 			assert.deepEqual( body, {
-				name: "test-app-name",
-				version: "6.6.6",
+				name: MOCK_PACKAGE.name,
+				version: MOCK_PACKAGE.version,
 				health: "red",
 				startTime: null
 			} );
@@ -62,8 +68,8 @@ describe( "Integration - Status Resource", () => {
 				.then();
 
 			assert.deepEqual( body, {
-				name: "test-app-name",
-				version: "6.6.6",
+				name: MOCK_PACKAGE.name,
+				version: MOCK_PACKAGE.version,
 				health: "green",
 				startTime: new Date().toISOString()
 			} );

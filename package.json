@@ -7,8 +7,8 @@
     "start": "node ./",
     "dev": "NODE_ENV=development nodemon ./ | bunyan",
     "lint": "eslint --ignore-path .gitignore ./",
-    "test-and-exit": "NODE_ENV=test mocha --compilers js:babel-register -R spec -r ./test-setup app/**/*.test.js",
-    "test-watch": "NODE_ENV=test mocha -w --compilers js:babel-register -R spec -r ./test-setup app/**/*.test.js",
+    "test-and-exit": "NODE_ENV=test mocha --compilers js:babel-register -r ./test-helpers -R spec app/**/*.test.js",
+    "test-watch": "NODE_ENV=test mocha -w --compilers js:babel-register -r ./test-helpers -R spec app/**/*.test.js",
     "coverage": "nyc -r text-summary -r html --require=babel-register -- npm run test-and-exit",
     "test": "npm run lint && npm run coverage"
   },
@@ -44,8 +44,8 @@
   "nyc": {
     "exclude": [
       "**/*.test.js",
-      "test-setup.js",
       "index.js",
+      "test-helpers",
       "coverage"
     ],
     "all": true
