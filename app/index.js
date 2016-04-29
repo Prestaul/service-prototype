@@ -1,5 +1,6 @@
 import makeEmitter from "listen-up";
 import appStatusFactory from "./app-status";
+import dataFactory from "./data";
 import loggerFactory from "./logger";
 import middlewareFactory from "./middleware";
 import routesFactory from "./routes";
@@ -23,6 +24,7 @@ export default function( config ) {
 		}
 	} );
 
+	app.data = dataFactory( app );
 	app.middleware = middlewareFactory( app );
 
 	// Set up application routing
