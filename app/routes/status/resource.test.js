@@ -1,6 +1,6 @@
 /* eslint-env mocha */
-import { assert } from "chai";
-import sinon from "sinon";
+/* global testHelpers */
+var { assert, sinon } = testHelpers;
 import resourceFactory from "./resource";
 
 const MOCK_APP = {

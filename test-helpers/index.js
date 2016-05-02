@@ -6,6 +6,8 @@ import pkg from "../package.json";
 import appFactory from "../app";
 import configFactory from "../config";
 
+require( "sinon-as-promised" );
+
 sinon.assert.expose( chai.assert, { prefix: "" } );
 
 global.testHelpers = {
