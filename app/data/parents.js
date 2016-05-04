@@ -6,6 +6,8 @@ const parentFactory = id => ( {
 export default function( app ) {
 	return {
 		async getById( logger, id ) {
+			id = parseInt( id, 10 ); // eslint-disable-line no-magic-numbers
+
 			logger.debug( { id }, "Retrieving parent from db by id" );
 
 			// Our db only has odd numbered parents up to 10
