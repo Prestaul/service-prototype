@@ -12,8 +12,8 @@ export default function( app ) {
 	// Mount resources
 	router
 		.use( "/status", statusFactory( app ) )
-		.use( "/parents", parentsFactory( app ) )
-		.use( "/children", childrenFactory( app ) );
+		.use( "/parents", app.middleware.auth, parentsFactory( app ) )
+		.use( "/children", app.middleware.auth, childrenFactory( app ) );
 
 	return router;
 }
