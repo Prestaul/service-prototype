@@ -21,14 +21,15 @@ describe( "Children Resource", () => {
 	describe( "get action", () => {
 		describe( "when called with non-existent id", () => {
 			var next = sinon.stub();
-			before( () => {
+			var result;
+			before( async () => {
 				var req = { params: { id: 42 } };
 				getById.resolves( null );
-				resource.get( req, {}, next );
+				result = await resource.get( req, {}, next );
 			} );
 
-			it( "should pass control to next handler", () => {
-				assert.calledOnce( next );
+			it( "should result in a null value", () => {
+				assert.isNull( result );
 			} );
 
 			after( () => {
@@ -41,11 +42,12 @@ describe( "Children Resource", () => {
 				json: sinon.stub()
 			};
 			var log = "LOG";
+			var result;
 
-			before( () => {
+			before( async () => {
 				var req = { params: { id: 42 }, log };
 				getById.resolves( { id: 42, type: "child" } );
-				resource.get( req, res );
+				result = await resource.get( req, res );
 			} );
 
 			it( "should make the correct data call", () => {
@@ -53,9 +55,8 @@ describe( "Children Resource", () => {
 				assert.calledWithExactly( getById, log, 42 );
 			} );
 
-			it( "should send the correct json ", () => {
-				assert.calledOnce( res.json );
-				assert.calledWithExactly( res.json, { id: 42, type: "child" } );
+			it( "should form the correct response", () => {
+				assert.deepEqual( result, { id: 42, type: "child" } );
 			} );
 
 			after( () => {

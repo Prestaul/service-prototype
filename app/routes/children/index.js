@@ -6,7 +6,7 @@ export default function( app ) {
 	var children = resourceFactory( app );
 
 	router
-		.get( "/:id", children.get );
+		.get( "/:id", app.middleware.promiseJson( children.get ) );
 
 	return router;
 }
