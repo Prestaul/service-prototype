@@ -21,8 +21,7 @@ describe( "Integration - Children Resource", () => {
 			var body = await hippie( app.server )
 				.json()
 				.get( "/children/2" )
-				.expectStatus( HTTPStatus.UNAUTHORIZED )
-				.then();
+				.expectStatus( HTTPStatus.UNAUTHORIZED );
 
 			assert.deepEqual( body, { message: "Unauthorized" } );
 		} );
@@ -32,8 +31,7 @@ describe( "Integration - Children Resource", () => {
 				.json()
 				.header( "X-Silly-Auth", "open sesame" )
 				.get( "/children/1" )
-				.expectStatus( HTTPStatus.NOT_FOUND )
-				.then();
+				.expectStatus( HTTPStatus.NOT_FOUND );
 
 			assert.deepEqual( body, { message: "Not Found" } );
 		} );
@@ -43,8 +41,7 @@ describe( "Integration - Children Resource", () => {
 				.json()
 				.header( "X-Silly-Auth", "open sesame" )
 				.get( "/children/2" )
-				.expectStatus( HTTPStatus.OK )
-				.then();
+				.expectStatus( HTTPStatus.OK );
 
 			assert.deepEqual( body, {
 				id: 2,

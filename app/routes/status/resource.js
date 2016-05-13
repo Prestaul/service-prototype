@@ -3,8 +3,7 @@ export default function( app ) {
 
 	return {
 		get( req, res ) {
-			var { status } = app;
-			res.json( { name, version, ...status } );
+			res.json( { name, version, ...app.status } );
 		}
 	};
 }

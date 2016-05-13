@@ -41,8 +41,7 @@ describe( "Integration - Status Resource", () => {
 			var body = await hippie( app.server )
 				.json()
 				.get( "/status" )
-				.expectStatus( HTTPStatus.OK )
-				.then();
+				.expectStatus( HTTPStatus.OK );
 
 			assert.deepEqual( body, {
 				name: MOCK_PACKAGE.name,
@@ -64,8 +63,7 @@ describe( "Integration - Status Resource", () => {
 			var body = await hippie( app.server )
 				.json()
 				.get( "/status" )
-				.expectStatus( HTTPStatus.OK )
-				.then();
+				.expectStatus( HTTPStatus.OK );
 
 			assert.deepEqual( body, {
 				name: MOCK_PACKAGE.name,
